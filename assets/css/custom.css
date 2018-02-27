@@ -1,0 +1,143 @@
+/* COLOUR REFERENCES
+
+Green:		#79b044
+Salmon:		#dd5638
+Blue Gray:  #3e4249
+
+*/
+
+/* ==== GENERAL ==== */
+
+body {
+	margin-top: 50px;
+	font-family: 'Varela Round', sans-serif;
+	font-size: 15px;
+	color: #525d68;
+	line-height:22px;
+	/*background: #fff url('../img/gplaypattern.png') repeat;*/
+	
+}
+
+/* ==== GLOBAL ==== */
+
+h1,h2,h3,h4,h5,h6 {
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizelegibility;
+	font-weight: bold;
+}
+
+p.lead {
+	font-weight: normal;
+}
+
+p {
+	margin: 0 0 15px;
+}
+
+a:link, a:visited {
+	color: #dd5638;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #c9302c;
+}
+
+blockquote {
+	padding: 0;
+	border: none;
+	font-style: italic;
+	text-align: left;
+}
+
+blockquote cite {
+	display: block;
+	color: #777;
+	margin: 15px 0 0 0;
+}
+
+blockquote:before {
+	display: none;
+}
+
+img {
+	max-width: 100%;
+}
+
+button, input, .btn, a.btn {
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizelegibility;
+	color: white;
+	font-weight:bold;
+}
+button.read_more {
+	background-color:#33485F;
+	border:none;
+}
+button.read_more:hover {
+	background-color:#525d68;
+}
+button.read_more a {
+	color:white!important;
+}
+
+.bg-grey {
+	background-color: #f5f6f7;
+}
+
+.footer-notes {
+	color: #83909d;
+	font-size:12px;
+}
+
+.main-nav {
+	border-bottom: solid 2px #f5f6f7;
+	border-left: solid 2px #f5f6f7;
+	border-right: solid 2px #f5f6f7;
+}
+
+.mb-20 {
+	margin-bottom:20px;
+}
+
+.mt-20 {
+	margin-top:20px;
+}
+
+.nav-about {
+	padding-top:20px;
+	border-bottom: solid 2px #f5f6f7;
+}
+
+.social-links img {
+	max-width:40px;
+	filter:invert(90%);
+}
+
+.social-links img:hover {
+	filter:invert(35%);
+}
+.social-links a {
+	margin: 0 20px;
+}
+
+.top-logo img {
+	max-width:85px;
+}
+
+/* ==== MEDIA QUERIES ==== */
+
+@media screen and (max-width : 991px) {
+	
+
+}
+
+@media screen and (max-width : 768px) {
+	.navbar-expand-md {
+		margin-left:90%;
+	}
+}
+
+@media screen and (max-width : 568px) {
+	
+}
