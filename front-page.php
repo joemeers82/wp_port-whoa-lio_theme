@@ -35,8 +35,8 @@
 				if( $the_query->have_posts() ): while( $the_query->have_posts() ) : $the_query->the_post(); 
 			?>
 			
-			<div class="col-md-4 mb-20">
-				<div class="wrapper bg-grey text-center p-3">
+			<div class="d-flex col-md-4 mb-20">
+				<div class="d-flex flex-column justify-content-between wrapper bg-grey text-center p-3">
 					<div class="post-img">
 						<?php the_post_thumbnail('thumbnail'); ?>
 					</div>
