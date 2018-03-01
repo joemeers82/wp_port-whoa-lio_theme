@@ -7,6 +7,14 @@
  * @package Port_Whoa_Lio
  */
 
+if( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
+	require_once dirname( __FILE__ ) . '/vendor/autoload.php';
+}
+//Initialize Admin Section Classes From Inc
+if ( class_exists( 'Inc\\Init' ) ) {
+	Inc\Init::register_services();
+}
+
 if ( ! function_exists( 'port_whoa_lio_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -167,99 +175,100 @@ function load_admin_scripts($hook) {
    		return;
    	}
    	wp_register_script('admin', get_template_directory_uri() .'/assets/js/admin.js', array('jquery'),'1.0.0',true);
+   	wp_localize_script( 'admin', 'admin_ajax', array('ajaxURL' => admin_url( 'admin-ajax.php' ))); //Localizing AJAX 
    	wp_enqueue_script('admin');
 
     wp_enqueue_media();
 }
 add_action( 'admin_enqueue_scripts', 'load_admin_scripts' );
 
-function add_home_page_settings() {
-	add_menu_page('Home Page Settings','Home Page Settings','manage_options','home_page_settings','home_page_settings','dashicons-admin-home',110);
+// function add_home_page_settings() {
+// 	add_menu_page('Home Page Settings','Home Page Settings','manage_options','home_page_settings','home_page_settings','dashicons-admin-home',110);
 
-	add_action('admin_init', 'home_page_custom_settings');
-}
+// 	add_action('admin_init', 'home_page_custom_settings');
+// }
 
-add_action('admin_menu', 'add_home_page_settings');
+// add_action('admin_menu', 'add_home_page_settings');
 
-function home_page_custom_settings() {
-	register_setting('home-page-settings-group','headline');
+// function home_page_custom_settings() {
+// 	register_setting('home-page-settings-group','headline');
 
-	register_setting('home-page-settings-group','tagline');
+// 	register_setting('home-page-settings-group','tagline');
 
-	register_setting('home-page-settings-group','tagline-image');
+// 	register_setting('home-page-settings-group','tagline-image');
 
-	add_settings_section('home-page-content-options','Home Screen Content','home_page_options','home_page_settings');
+// 	add_settings_section('home-page-content-options','Home Screen Content','home_page_options','home_page_settings');
 
 
 	
-	add_settings_field('home_content_headline','Headline','home_page_headline','home_page_settings','home-page-content-options');
+// 	add_settings_field('home_content_headline','Headline','home_page_headline','home_page_settings','home-page-content-options');
 
-	add_settings_field('home_content_tagline','Tagline','home_page_tagline','home_page_settings','home-page-content-options');;
-}
+// 	add_settings_field('home_content_tagline','Tagline','home_page_tagline','home_page_settings','home-page-content-options');;
+// }
 
-function image_uploader( $name, $width, $height ) {
+// function image_uploader( $name, $width, $height ) {
 
-    // Set variables
-    $options = get_option( 'RssFeedIcon_settings' );
-    $default_image = plugins_url('img/no-image.png', __FILE__);
+//     // Set variables
+//     $options = get_option( 'RssFeedIcon_settings' );
+//     $default_image = plugins_url('img/no-image.png', __FILE__);
 
-    if ( !empty( $options[$name] ) ) {
-        $image_attributes = wp_get_attachment_image_src( $options[$name], array( $width, $height ) );
-        $src = $image_attributes[0];
-        $value = $options[$name];
-    } else {
-        $src = $default_image;
-        $value = '';
-    }
+//     if ( !empty( $options[$name] ) ) {
+//         $image_attributes = wp_get_attachment_image_src( $options[$name], array( $width, $height ) );
+//         $src = $image_attributes[0];
+//         $value = $options[$name];
+//     } else {
+//         $src = $default_image;
+//         $value = '';
+//     }
 
-    $text = __( 'Upload', RSSFI_TEXT );
+//     $text = __( 'Upload', RSSFI_TEXT );
 
-    // Print HTML field
-    echo '
-        <div class="upload">
-            <img data-src="' . $default_image . '" src="' . $src . '" width="' . $width . 'px" height="' . $height . 'px" />
-            <div>
-                <input type="hidden" name="RssFeedIcon_settings[' . $name . ']" id="RssFeedIcon_settings[' . $name . ']" value="' . $value . '" />
-                <button type="submit" class="upload_image_button button">' . $text . '</button>
-                <button type="submit" class="remove_image_button button">&times;</button>
-            </div>
-        </div>
-    ';
-}
+//     // Print HTML field
+//     echo '
+//         <div class="upload">
+//             <img data-src="' . $default_image . '" src="' . $src . '" width="' . $width . 'px" height="' . $height . 'px" />
+//             <div>
+//                 <input type="hidden" name="RssFeedIcon_settings[' . $name . ']" id="RssFeedIcon_settings[' . $name . ']" value="' . $value . '" />
+//                 <button type="submit" class="upload_image_button button">' . $text . '</button>
+//                 <button type="submit" class="remove_image_button button">&times;</button>
+//             </div>
+//         </div>
+//     ';
+// }
 
-function home_page_headline() {
-	$headlineText = wpautop( stripslashes(get_option('headline') ) );
-	$content      = $headlineText;
-	$editor_id    ='headline_editor';
-	$settings = array(
-    	'textarea_rows' => 4,
-    	'media_buttons' =>false,
-    	'textarea_name' => 'headline'
-	);
-	wp_editor($content,$editor_id,$settings);
-};
+// function home_page_headline() {
+// 	$headlineText = wpautop( stripslashes(get_option('headline') ) );
+// 	$content      = $headlineText;
+// 	$editor_id    ='headline_editor';
+// 	$settings = array(
+//     	'textarea_rows' => 4,
+//     	'media_buttons' =>false,
+//     	'textarea_name' => 'headline'
+// 	);
+// 	wp_editor($content,$editor_id,$settings);
+// };
 
-function home_page_tagline() {
-	$taglineText  = wpautop( stripslashes(get_option('tagline') ) );
-	$taglineImage = esc_attr( get_option('tagline-image') );
-	$content      = $taglineText;
-	$editor_id    ='tagline_editor';
-	$settings = array(
-    	'textarea_rows' => 4,
-    	'media_buttons' =>false,
-    	'textarea_name' => 'tagline'
-	);
-	echo '<div class="tagline-image"><img src="'.$taglineImage.'"/></div>';
-	echo '<input type="button" value="Upload Image for Tagline section" id="upload-button"> <input type="hidden" id="tagline-image" name="tagline-image" value="'.$taglineImage.'" />';
-	wp_editor($content,$editor_id,$settings);
-};
+// function home_page_tagline() {
+// 	$taglineText  = wpautop( stripslashes(get_option('tagline') ) );
+// 	$taglineImage = esc_attr( get_option('tagline-image') );
+// 	$content      = $taglineText;
+// 	$editor_id    ='tagline_editor';
+// 	$settings = array(
+//     	'textarea_rows' => 4,
+//     	'media_buttons' =>false,
+//     	'textarea_name' => 'tagline'
+// 	);
+// 	echo '<div class="tagline-image"><img src="'.$taglineImage.'"/></div>';
+// 	echo '<input type="button" value="Upload Image for Tagline section" id="upload-button"> <input type="hidden" id="tagline-image" name="tagline-image" value="'.$taglineImage.'" />';
+// 	wp_editor($content,$editor_id,$settings);
+// };
 
-function home_page_settings() {
-	if ( !current_user_can( 'manage_options' ) )  {
-		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-	}
-	require_once(get_template_directory().'/template-parts/home-page-settings.php');
-};
+// function home_page_settings() {
+// 	if ( !current_user_can( 'manage_options' ) )  {
+// 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+// 	}
+// 	require_once(get_template_directory().'/template-parts/home-page-settings.php');
+// };
 
 
 

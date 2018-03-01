@@ -20,6 +20,12 @@ jQuery(function($) {
 		mediaUploader.on('select',function(){
 			attachment = mediaUploader.state().get('selection').first().toJSON();
 			$('#tagline-image').val(attachment.url);
+			$.ajax({
+				url: admin_ajax.ajax,
+				success: function( data ) {
+					$('.tagline-image img').attr('src',attachment.url);
+				}
+			})
 		});
 
 		mediaUploader.open();

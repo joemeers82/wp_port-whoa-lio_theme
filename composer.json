@@ -1,0 +1,15 @@
+{
+    "name": "josephjankowski/port-whoa-lio",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Joe Meers Jankowski",
+            "email": "JoeMeers82@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload" : {
+        "psr-4": {"Inc\\" :"./inc"}
+    }
+}
